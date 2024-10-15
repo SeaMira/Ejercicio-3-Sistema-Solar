@@ -4,21 +4,21 @@
 #include "OgreRTShaderSystem.h"
 #include "planet.h"
 
-class Breakout : public OgreBites::ApplicationContext, public OgreBites::InputListener
+class SolarSystem : public OgreBites::ApplicationContext, public OgreBites::InputListener
 {
 public:
-    Breakout();
-    virtual ~Breakout() {}
+    SolarSystem();
+    virtual ~SolarSystem() {}
 
     void setup();
     bool keyPressed(const OgreBites::KeyboardEvent& evt);
 };
 
-Breakout::Breakout() : OgreBites::ApplicationContext("Breakout")
+SolarSystem::SolarSystem() : OgreBites::ApplicationContext("SolarSystem")
 {
 }
 
-void Breakout::setup()
+void SolarSystem::setup()
 {
     // Calling the base first, adding the input listener
     OgreBites::ApplicationContext::setup();
@@ -49,9 +49,12 @@ void Breakout::setup()
 
     // Setting up the viewport
     getRenderWindow()->addViewport(cam);
+
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation("assets", "FileSystem");
+    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-bool Breakout::keyPressed(const OgreBites::KeyboardEvent& evt)
+bool SolarSystem::keyPressed(const OgreBites::KeyboardEvent& evt)
 {
     if (evt.keysym.sym == OgreBites::SDLK_ESCAPE)
     {
@@ -64,7 +67,7 @@ int main(int argc, char **argv)
 {
     try
     {
-        Breakout app;
+        SolarSystem app;
         app.initApp();
         app.getRoot()->startRendering();
         app.closeApp();
