@@ -2,7 +2,7 @@ file(GLOB_RECURSE HEADERS "${CMAKE_SOURCE_DIR}/include/*.h")
 
 add_library(solar_sistem_lib STATIC
     "planet.cpp"
-
+    "player.cpp"
     ${HEADERS}
 )
 
